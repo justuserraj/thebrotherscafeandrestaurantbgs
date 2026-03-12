@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 
 const InteractiveCTA = () => {
   return (
-    <section className="py-24 bg-brand-black relative overflow-hidden">
+    <section id="gallery" className="py-24 bg-brand-black relative overflow-hidden">
       <div className="container mx-auto px-6 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -21,12 +21,16 @@ const InteractiveCTA = () => {
             Customize your platter with our wide range of North Indian and Indo-Chinese specialties. 
             Freshly prepared, just the way you like it.
           </p>
-          <Button className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-pill px-12 py-8 text-xl shadow-xl shadow-brand-orange/20">
-            Order Now
+          <Button 
+            asChild
+            className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-pill px-12 py-8 text-xl shadow-xl shadow-brand-orange/20"
+          >
+            <a href="https://www.swiggy.com" target="_blank" rel="noopener noreferrer">
+              Order Now
+            </a>
           </Button>
         </motion.div>
 
-        {/* Floating Ingredients Simulation */}
         <div className="absolute inset-0 pointer-events-none">
           <motion.img
             animate={{ 
@@ -51,7 +55,6 @@ const InteractiveCTA = () => {
         </div>
       </div>
 
-      {/* Spotlight Effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-orange/5 rounded-full blur-[120px] -z-0" />
     </section>
   );

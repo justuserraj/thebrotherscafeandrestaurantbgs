@@ -2,12 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +19,24 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      const element = document.querySelector(href);
+      element?.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const handleBookTable = () => {
+    if (location.pathname !== '/') {
+      navigate('/#contact');
+    } else {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   const navLinks = [
     { name: 'Menu', href: '#menu' },
@@ -26,14 +47,14 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-brand-black/95 backdrop-blur-md py-4 shadow-lg' : 'bg-transparent py-6'
+        isScrolled || location.pathname !== '/' ? 'bg-brand-black/95 backdrop-blur-md py-4 shadow-lg' : 'bg-transparent py-6'
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <div className="flex items-center">
-          <a href="/" className="text-2xl font-bold text-white tracking-tighter">
+          <Link to="/" className="text-2xl font-bold text-white tracking-tighter">
             THE BROTHER'S<span className="text-brand-orange">.</span>
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Nav */}
@@ -42,12 +63,16 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-sm font-medium text-white/80 hover:text-brand-orange transition-colors"
             >
               {link.name}
             </a>
           ))}
-          <Button className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-pill px-8">
+          <Button 
+            onClick={handleBookTable}
+            className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-pill px-8"
+          >
             Book Table
           </Button>
         </div>
@@ -75,13 +100,16 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="text-lg font-medium text-white"
-                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
                 </a>
               ))}
-              <Button className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-pill w-full">
+              <Button 
+                onClick={handleBookTable}
+                className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-pill w-full"
+              >
                 Book Table
               </Button>
             </div>

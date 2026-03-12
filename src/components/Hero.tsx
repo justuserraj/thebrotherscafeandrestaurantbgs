@@ -6,8 +6,12 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <section className="relative min-h-screen bg-brand-black flex items-center overflow-hidden pt-20">
+    <section id="home" className="relative min-h-screen bg-brand-black flex items-center overflow-hidden pt-20">
       <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -27,11 +31,18 @@ const Hero = () => {
             Where tradition meets modern artistry in every plate.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-pill px-10 py-7 text-lg group">
+            <Button 
+              onClick={() => scrollToSection('menu')}
+              className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-pill px-10 py-7 text-lg group"
+            >
               Explore Menu
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </Button>
-            <Button variant="outline" className="border-brand-gray text-white hover:bg-white/10 rounded-pill px-10 py-7 text-lg">
+            <Button 
+              variant="outline" 
+              onClick={() => scrollToSection('about')}
+              className="border-brand-gray text-white hover:bg-white/10 rounded-pill px-10 py-7 text-lg"
+            >
               Our Story
             </Button>
           </div>
@@ -50,7 +61,6 @@ const Hero = () => {
               className="w-full h-auto object-cover"
             />
           </div>
-          {/* Decorative elements for 3D effect */}
           <motion.div
             animate={{ y: [0, -20, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -64,7 +74,6 @@ const Hero = () => {
         </motion.div>
       </div>
       
-      {/* Background Text */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none opacity-[0.02] select-none">
         <h2 className="text-[20vw] font-black text-white whitespace-nowrap leading-none">
           VEGETARIAN • CUISINE • ARTISTRY
