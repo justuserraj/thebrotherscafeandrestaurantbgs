@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Clock, MapPin, Phone, Mail } from 'lucide-react';
+import { Clock, MapPin, Phone } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const InfoSection = () => {
   return (
