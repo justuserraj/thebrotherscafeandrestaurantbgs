@@ -20,7 +20,7 @@ const Index = () => {
       <InteractiveCTA />
       <InfoSection />
       <Footer />
-      <MadeWithDyad />
+      <MadeWithVizoxStudio />
     </main>
   );
 };
