@@ -6,6 +6,8 @@ import { Clock, MapPin, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const InfoSection = () => {
+  const googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=The+Brothers+Cafe+Restaurant+Begusarai+Bihar+851101";
+
   return (
     <section id="contact" className="py-24 bg-white">
       <div className="container mx-auto px-6">
@@ -71,8 +73,13 @@ const InfoSection = () => {
             </div>
 
             <div className="mt-10 pt-10 border-t border-brand-black/10">
-              <Button className="w-full bg-brand-black hover:bg-brand-black/90 text-white rounded-pill py-6">
-                Get Directions
+              <Button 
+                asChild
+                className="w-full bg-brand-black hover:bg-brand-black/90 text-white rounded-pill py-6"
+              >
+                <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+                  Get Directions
+                </a>
               </Button>
             </div>
           </motion.div>
