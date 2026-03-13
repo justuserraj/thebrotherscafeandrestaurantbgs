@@ -3,9 +3,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Calendar } from 'lucide-react';
+import { useBooking } from '@/context/BookingContext';
 
 const Hero = () => {
+  const { openBookingModal } = useBooking();
+  
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -32,18 +35,19 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button 
-              onClick={() => scrollToSection('menu')}
+              onClick={openBookingModal}
               className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-pill px-10 py-7 text-lg group"
             >
-              Explore Menu
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+              Book a Table
+              <Calendar className="ml-2 group-hover:scale-110 transition-transform" size={20} />
             </Button>
             <Button 
               variant="outline" 
-              onClick={() => scrollToSection('about')}
-              className="border-brand-gray text-white hover:bg-white/10 rounded-pill px-10 py-7 text-lg"
+              onClick={() => scrollToSection('menu')}
+              className="border-brand-gray text-white hover:bg-white/10 rounded-pill px-10 py-7 text-lg group"
             >
-              Our Story
+              Explore Menu
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </Button>
           </div>
         </motion.div>

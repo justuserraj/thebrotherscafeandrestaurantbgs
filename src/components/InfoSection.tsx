@@ -2,10 +2,12 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Clock, MapPin, Phone } from 'lucide-react';
+import { Clock, MapPin, Phone, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useBooking } from '@/context/BookingContext';
 
 const InfoSection = () => {
+  const { openBookingModal } = useBooking();
   const googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=The+Brothers+Cafe+Restaurant+Begusarai+Bihar+851101";
 
   return (
@@ -72,10 +74,18 @@ const InfoSection = () => {
               </div>
             </div>
 
-            <div className="mt-10 pt-10 border-t border-brand-black/10">
+            <div className="mt-10 pt-10 border-t border-brand-black/10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Button 
+                onClick={openBookingModal}
+                className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-pill py-6 group"
+              >
+                <Calendar className="mr-2 group-hover:scale-110 transition-transform" size={18} />
+                Reserve Now
+              </Button>
               <Button 
                 asChild
-                className="w-full bg-brand-black hover:bg-brand-black/90 text-white rounded-pill py-6"
+                variant="outline"
+                className="border-brand-black text-brand-black hover:bg-brand-black/5 rounded-pill py-6"
               >
                 <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
                   Get Directions
