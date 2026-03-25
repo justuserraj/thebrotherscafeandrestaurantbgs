@@ -8,7 +8,7 @@ import Showcase from '@/components/Showcase';
 import InteractiveCTA from '@/components/InteractiveCTA';
 import InfoSection from '@/components/InfoSection';
 import Footer from '@/components/Footer';
-import { MadeWithVizoxStudio } from "@/components/made-with-dyad";
+import { MadeWithVizoxStudio } from "@/components/made-with-vizoxstudio";
 
 const Index = () => {
   return (
